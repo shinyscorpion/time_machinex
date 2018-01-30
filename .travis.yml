@@ -1,0 +1,10 @@
+language: elixir
+elixir:
+  - 1.6.0
+otp_release:
+  - 20.0
+script: mix analyze
+cache:
+  directories:
+    - _build
+    - deps

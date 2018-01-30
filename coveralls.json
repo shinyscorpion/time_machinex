@@ -1,0 +1,7 @@
+{
+  "skip_files": [],
+  "custom_stop_words": [
+    "\\\\\\\\",
+    "defdelegate"
+  ]
+}
