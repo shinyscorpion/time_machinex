@@ -1,5 +1,7 @@
 # TimeMachinex
+[![Hex.pm](https://img.shields.io/hexpm/v/time_machinex.svg "Hex")](https://hex.pm/packages/time_machinex)
 [![Build Status](https://travis-ci.org/shinyscorpion/time_machinex.svg?branch=master)](https://travis-ci.org/shinyscorpion/time_machinex)
+[![Hex.pm](https://img.shields.io/hexpm/l/time_machinex.svg "License")](LICENSE.md)
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
