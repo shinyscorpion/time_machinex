@@ -1,4 +1,5 @@
 # TimeMachinex
+[![Build Status](https://travis-ci.org/shinyscorpion/time_machinex.svg?branch=master)](https://travis-ci.org/shinyscorpion/time_machinex)
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
