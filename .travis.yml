@@ -3,7 +3,7 @@ elixir:
   - 1.6.0
 otp_release:
   - 20.0
-script: mix analyze --non-interactive
+script: mix analyze --non-interactive --no-dialyzer
 cache:
   directories:
     - _build
