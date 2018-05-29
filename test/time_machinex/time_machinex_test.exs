@@ -13,6 +13,7 @@ defmodule TimeMachinexTest do
 
     test "uses the SystemClock if no config found" do
       now = TimeMachinex.now()
+      :timer.sleep(1000)
       assert now < TimeMachinex.now()
     end
 
@@ -20,6 +21,7 @@ defmodule TimeMachinexTest do
       Application.put_env(:time_machinex, TimeMachinex, [])
 
       now = TimeMachinex.now()
+      :timer.sleep(1000)
       assert now < TimeMachinex.now()
     end
 
@@ -29,6 +31,29 @@ defmodule TimeMachinexTest do
 
       now = TimeMachinex.now()
       assert now == TimeMachinex.now()
+    end
+
+    test "return the timestamp to the specified precision" do
+      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      ManagedClock.start()
+
+      assert :eq ==
+               DateTime.compare(
+                 TimeMachinex.now(precision: :second),
+                 TimeMachinex.now(precision: :second)
+               )
+
+      assert :lt ==
+               DateTime.compare(
+                 TimeMachinex.now(precision: :second),
+                 TimeMachinex.now(precision: :millisecond)
+               )
+
+      assert :lt ==
+               DateTime.compare(
+                 TimeMachinex.now(precision: :millisecond),
+                 TimeMachinex.now(precision: :microsecond)
+               )
     end
   end
 end

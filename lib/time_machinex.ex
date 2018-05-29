@@ -2,9 +2,16 @@ defmodule TimeMachinex do
   @moduledoc """
    Define a generic clock api
   """
-  @spec now() :: DateTime.t()
-  def now do
-    adapter().now
+
+  @doc """
+  Return the current time from the configured adapter
+  Options are:
+    precision: :microsecond | :millisecond | :second, default: :millisecond
+  """
+  @spec now(keyword) :: DateTime.t()
+  def now(opts \\ []) do
+    precision = Keyword.get(opts, :precision, :millisecond)
+    DateTime.truncate(adapter().now(), precision)
   end
 
   defp adapter do
