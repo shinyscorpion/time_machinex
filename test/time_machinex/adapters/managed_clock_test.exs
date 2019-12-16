@@ -1,10 +1,12 @@
 defmodule TimeMachinex.ManagedClockTest do
   @moduledoc false
   use ExUnit.Case, async: false
+  use UTCDateTime
 
   alias TimeMachinex.ManagedClock
 
   @past ~N[1970-01-01 10:10:10]
+  @past_utc ~Z[1970-01-01 10:10:10]
 
   describe "start/1" do
     test "starts the sigleton agent" do
@@ -49,6 +51,23 @@ defmodule TimeMachinex.ManagedClockTest do
       ManagedClock.set(DateTime.from_naive!(@past, "Etc/UTC"))
 
       assert ManagedClock.now() < DateTime.utc_now()
+    end
+  end
+
+  describe "utc_now/0" do
+    setup do
+      ManagedClock.start()
+
+      :ok
+    end
+
+    test "return the time set in the time machine" do
+      now = ManagedClock.utc_now()
+      assert now < UTCDateTime.utc_now()
+      assert now == ManagedClock.utc_now()
+
+      ManagedClock.set(@past_utc)
+      assert ManagedClock.utc_now() == @past_utc
     end
   end
 end
