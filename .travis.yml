@@ -1,8 +1,8 @@
 language: elixir
 elixir:
-  - 1.6.0
+  - 1.9.4
 otp_release:
-  - 20.0
+  - 22.2
 script: mix analyze --non-interactive --no-dialyzer
 cache:
   directories:

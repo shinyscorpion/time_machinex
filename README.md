@@ -10,7 +10,7 @@ by adding `time_machinex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:time_machinex, "~> 0.2.0"}
+    {:time_machinex, "~> 0.3.0"}
   ]
 end
 ```

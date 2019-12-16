@@ -1,7 +1,7 @@
 defmodule TimeMachinex.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.3.0"
   @description "Time machine clock to simplify time testing"
 
   def project do
@@ -9,14 +9,20 @@ defmodule TimeMachinex.MixProject do
       app: :time_machinex,
       version: @version,
       description: @description,
-      elixir: "~> 1.6",
+      elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
 
       # Testing
       test_coverage: [tool: ExCoveralls],
-      dialyzer: [ignore_warnings: "dialyzer.ignore-warnings", plt_add_deps: true],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
+      dialyzer: [ignore_warnings: ".dialyzer", plt_add_deps: true],
 
       # Docs
       name: "TimeMachinex",
@@ -59,7 +65,8 @@ defmodule TimeMachinex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:analyze, "~> 0.0.9", only: [:dev, :test]}
+      {:analyze, "~> 0.1", only: [:dev, :test], runtime: false},
+      {:utc_datetime, ">= 0.0.0"}
     ]
   end
 end
