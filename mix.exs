@@ -9,14 +9,20 @@ defmodule TimeMachinex.MixProject do
       app: :time_machinex,
       version: @version,
       description: @description,
-      elixir: "~> 1.6",
+      elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
 
       # Testing
       test_coverage: [tool: ExCoveralls],
-      dialyzer: [ignore_warnings: "dialyzer.ignore-warnings", plt_add_deps: true],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ],
+      dialyzer: [ignore_warnings: ".dialyzer", plt_add_deps: true],
 
       # Docs
       name: "TimeMachinex",
