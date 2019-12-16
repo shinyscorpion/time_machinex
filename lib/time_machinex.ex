@@ -3,11 +3,13 @@ defmodule TimeMachinex do
   Define a generic clock api
   """
 
-  @doc ~S"""
+  @default_precision :microsecond
+
+  @doc ~s"""
   Return the current time from the configured adapter
 
   Options are:
-    precision: :microsecond | :millisecond | :second, default: :millisecond
+    precision: :microsecond | :millisecond | :second, default: #{@default_precision}
 
   ## Examples
 
@@ -18,15 +20,15 @@ defmodule TimeMachinex do
   """
   @spec now(keyword) :: DateTime.t()
   def now(opts \\ []) do
-    precision = Keyword.get(opts, :precision, :millisecond)
+    precision = Keyword.get(opts, :precision, @default_precision)
     DateTime.truncate(adapter().now(), precision)
   end
 
-  @doc ~S"""
+  @doc ~s"""
   Return the current time from the configured adapter
 
   Options are:
-    precision: :microsecond | :millisecond | :second, default: :millisecond
+    precision: :microsecond | :millisecond | :second, default: #{@default_precision}
 
   ## Examples
 
@@ -37,7 +39,7 @@ defmodule TimeMachinex do
   """
   @spec utc_now(keyword) :: UTCDateTime.t()
   def utc_now(opts \\ []) do
-    precision = Keyword.get(opts, :precision, :millisecond)
+    precision = Keyword.get(opts, :precision, @default_precision)
     UTCDateTime.truncate(adapter().utc_now(), precision)
   end
 
