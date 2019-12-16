@@ -26,7 +26,7 @@ defmodule TimeMachinexTest do
     end
 
     test "uses the adapter provided in the conf" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       now = TimeMachinex.now()
@@ -34,7 +34,7 @@ defmodule TimeMachinexTest do
     end
 
     test "return the timestamp to the specified precision" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       assert :eq ==
@@ -79,7 +79,7 @@ defmodule TimeMachinexTest do
     end
 
     test "uses the adapter provided in the conf" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       now = TimeMachinex.utc_now()
@@ -87,7 +87,7 @@ defmodule TimeMachinexTest do
     end
 
     test "return the timestamp to the specified precision" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       assert :eq ==
