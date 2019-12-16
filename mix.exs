@@ -59,7 +59,7 @@ defmodule TimeMachinex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:analyze, "~> 0.0.9", only: [:dev, :test]}
+      {:analyze, "~> 0.1", only: [:dev, :test], runtime: false},
     ]
   end
 end
