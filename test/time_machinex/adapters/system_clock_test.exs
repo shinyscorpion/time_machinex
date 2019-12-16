@@ -11,4 +11,12 @@ defmodule TimeMachinex.SystemClockTest do
       assert now < SystemClock.now()
     end
   end
+
+  describe "utc_now/0" do
+    test "return the current system time" do
+      now = SystemClock.utc_now()
+
+      assert now < SystemClock.utc_now()
+    end
+  end
 end
