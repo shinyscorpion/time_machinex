@@ -66,6 +66,7 @@ defmodule TimeMachinex.MixProject do
   defp deps do
     [
       {:analyze, "~> 0.1", only: [:dev, :test], runtime: false},
+      {:utc_datetime, ">= 0.0.0"}
     ]
   end
 end

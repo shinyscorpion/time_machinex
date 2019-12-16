@@ -23,4 +23,5 @@
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.5", "6eaf7ad16cb568bb01753dbbd7a95ff8b91c7979482b95f38443fe2c8852a79b", [:make, :mix, :rebar3], [], "hexpm"},
   "tidy": {:hex, :tidy, "0.1.2", "601735d3d64efd76b6a9847dd35a2c48a11859b8c1350914c1b1b5a81a486fb7", [:mix], [], "hexpm"},
   "unicode_util_compat": {:hex, :unicode_util_compat, "0.4.1", "d869e4c68901dd9531385bb0c8c40444ebf624e60b6962d95952775cac5e90cd", [:rebar3], [], "hexpm"},
+  "utc_datetime": {:hex, :utc_datetime, "0.0.7", "97fa82b79e3b80d95fd6092aedb830df271df992a711d9962ac0443693f89560", [:mix], [{:ecto, ">= 3.0.0", [hex: :ecto, repo: "hexpm", optional: true]}, {:jason, ">= 1.0.0", [hex: :jason, repo: "hexpm", optional: true]}], "hexpm"},
 }
