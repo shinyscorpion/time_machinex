@@ -1,7 +1,7 @@
 defmodule TimeMachinex.MixProject do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.3.0"
   @description "Time machine clock to simplify time testing"
 
   def project do
