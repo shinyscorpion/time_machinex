@@ -31,7 +31,8 @@ config :time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock
 ```
 
 ### Usage
-Whenever you need the current system time just replace the standard `DateTime.utc_now/0` call with a `TimeMachinex.now/0` call.
+Whenever you need the current system time just replace the standard `DateTime.utc_now/0` call with a `TimeMachinex.utc_now/0` or `TimeMachinex.utc_now/1` call.
+Please note that `utc_now` returns an `UTCDateTime` type. (Please use `now/0` and `now/1` if you need a standard `DateTime`)
 
 In `:prod` and `:dev` this will have no real side effects, since the `now/0` function is just an alias for the `DateTime.utc_now/0` thanks to the inline compilation attribute.
 
@@ -43,36 +44,36 @@ The only thing you need to do in your tests is to start the *ManagedClock*:
 
 when it starts it is configured with the current time:
 
-    iex(2)> TimeMachinex.ManagedClock.now()
-    #DateTime<2018-01-30 15:51:33.689925Z>
+    iex(2)> TimeMachinex.ManagedClock.utc_now()
+    ~Z[2019-12-16 14:34:32.623987]
 
-but now all the calls to `TimeMachinex.now/0` will read the time from the *ManagedClock*
+but now all the calls to `TimeMachinex.utc_now/0` will read the time from the *ManagedClock*
 
-    iex(3)> TimeMachinex.now()
-    #DateTime<2018-01-30 15:51:33.689925Z>
+    iex(3)> TimeMachinex.utc_now()
+    ~Z[2019-12-16 14:34:32.623987]
 
 which means that you can manipulate, simulate the time passing and test the time used in your production code.
 
 And yes, you stopped the time!
 
-    iex(4)> TimeMachinex.now()
-    #DateTime<2018-01-30 15:51:33.689925Z>
-    iex(5)> TimeMachinex.now()
-    #DateTime<2018-01-30 15:51:33.689925Z>
+    iex(4)> TimeMachinex.utc_now()
+    ~Z[2019-12-16 14:34:32.623987]
+    iex(5)> TimeMachinex.utc_now()
+    ~Z[2019-12-16 14:34:32.623987]
 
 If you want to update the TimeMachinex with the current time again (to simulate time passing) you can just:
 
     iex(7)> TimeMachinex.ManagedClock.set()
     :ok
-    iex(8)> TimeMachinex.now()
-    #DateTime<2018-01-30 15:54:43.641350Z>
+    iex(8)> TimeMachinex.utc_now()
+    ~Z[2019-12-16 14:38:04.255975]
 
 or you may just want to set a specific time and wait for Marty McFly:
 
-    iex(9)> TimeMachinex.ManagedClock.set(DateTime.from_naive!(~N[1985-10-26 09:00:00], "Etc/UTC"))
+    iex(9)> ~N[1985-10-26 09:00:00] |> DateTime.from_naive!("Etc/UTC") |> TimeMachinex.ManagedClock.set()
     :ok
 
-    iex(10)> TimeMachinex.now()
-    #DateTime<1985-10-26 09:00:00Z>
+    iex(10)> TimeMachinex.utc_now()
+    ~Z[1985-10-26 09:00:00]
 
 Happy time travel!
