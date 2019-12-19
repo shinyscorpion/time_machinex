@@ -11,12 +11,6 @@ defmodule TimeMachinexTest do
       :ok
     end
 
-    test "uses the SystemClock if no config found" do
-      now = TimeMachinex.now()
-      :timer.sleep(1000)
-      assert now < TimeMachinex.now()
-    end
-
     test "uses the SystemClock if no adapter provided in the conf" do
       Application.put_env(:time_machinex, TimeMachinex, [])
 
@@ -62,12 +56,6 @@ defmodule TimeMachinexTest do
       Application.delete_env(:time_machinex, TimeMachinex)
 
       :ok
-    end
-
-    test "uses the SystemClock if no config found" do
-      now = TimeMachinex.utc_now()
-      :timer.sleep(1000)
-      assert now < TimeMachinex.utc_now()
     end
 
     test "uses the SystemClock if no adapter provided in the conf" do
