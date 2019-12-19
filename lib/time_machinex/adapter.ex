@@ -12,4 +12,14 @@ defmodule TimeMachinex.Adapter do
   Returns the current UTC datetime.
   """
   @callback utc_now() :: UTCDateTime.t()
+
+  @doc ~S"""
+  Returns quoted expression to get the current datetime in UTC.
+  """
+  @callback quoted_now() :: term
+
+  @doc ~S"""
+  Returns quoted expression to get the current UTC datetime.
+  """
+  @callback quoted_utc_now() :: term
 end

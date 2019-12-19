@@ -11,12 +11,6 @@ defmodule TimeMachinexTest do
       :ok
     end
 
-    test "uses the SystemClock if no config found" do
-      now = TimeMachinex.now()
-      :timer.sleep(1000)
-      assert now < TimeMachinex.now()
-    end
-
     test "uses the SystemClock if no adapter provided in the conf" do
       Application.put_env(:time_machinex, TimeMachinex, [])
 
@@ -26,7 +20,7 @@ defmodule TimeMachinexTest do
     end
 
     test "uses the adapter provided in the conf" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       now = TimeMachinex.now()
@@ -34,7 +28,7 @@ defmodule TimeMachinexTest do
     end
 
     test "return the timestamp to the specified precision" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       assert :eq ==
@@ -64,12 +58,6 @@ defmodule TimeMachinexTest do
       :ok
     end
 
-    test "uses the SystemClock if no config found" do
-      now = TimeMachinex.utc_now()
-      :timer.sleep(1000)
-      assert now < TimeMachinex.utc_now()
-    end
-
     test "uses the SystemClock if no adapter provided in the conf" do
       Application.put_env(:time_machinex, TimeMachinex, [])
 
@@ -79,7 +67,7 @@ defmodule TimeMachinexTest do
     end
 
     test "uses the adapter provided in the conf" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       now = TimeMachinex.utc_now()
@@ -87,7 +75,7 @@ defmodule TimeMachinexTest do
     end
 
     test "return the timestamp to the specified precision" do
-      Application.put_env(:time_machinex, TimeMachinex, adapter: TimeMachinex.ManagedClock)
+      TimeMachinex.configure(adapter: TimeMachinex.ManagedClock)
       ManagedClock.start()
 
       assert :eq ==

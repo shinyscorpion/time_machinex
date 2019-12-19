@@ -24,4 +24,20 @@ defmodule TimeMachinex.ManagedClock do
 
   @impl TimeMachinex.Adapter
   def utc_now, do: UTCDateTime.from_datetime(now())
+
+  @impl TimeMachinex.Adapter
+  def quoted_now do
+    quote do
+      Agent.get(unquote(__MODULE__), & &1)
+    end
+  end
+
+  @impl TimeMachinex.Adapter
+  def quoted_utc_now do
+    quote do
+      unquote(__MODULE__)
+      |> Agent.get(& &1)
+      |> UTCDateTime.from_datetime()
+    end
+  end
 end
